@@ -1,0 +1,11 @@
+# Module configuration
+module.tx_sfsvgapi {
+	persistence {
+		storagePid = {$module.tx_sfsvgapi.persistence.storagePid}
+	}
+	view {
+		templateRootPath = {$module.tx_sfsvgapi.view.templateRootPath}
+		partialRootPath = {$module.tx_sfsvgapi.view.partialRootPath}
+		layoutRootPath = {$module.tx_sfsvgapi.view.layoutRootPath}
+	}
+}
