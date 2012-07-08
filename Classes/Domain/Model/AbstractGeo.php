@@ -49,6 +49,13 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 	protected $id = '';
 	
 	/**
+	 * the class Attribute of the tag to create
+	 * 
+	 * @var string
+	 */
+	protected $class = '';
+	
+	/**
 	 * define some style attributes which are also available for CSS2
 	 * 
 	 * @var Tx_Sfsvgapi_Domain_Attribute_Css
@@ -107,6 +114,24 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 	public function setId($id) {
 		$this->attributes['id'] = $id;
 		$this->id = $id;
+	}
+	
+	/**
+	 * getter for class
+	 *
+	 * @return string
+	 */
+	public function getClass() {
+		return $this->class;
+	}
+	
+	/**
+	 * setter for class
+	 *
+	 * @param string $class
+	 */
+	public function setClass($class) {
+		$this->class = $class;
 	}
 	
 	/**
