@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_Sfsvgapi_Domain_Model_Path extends Tx_Sfsvgapi_Domain_Model_AbstractGeo {
+class Tx_Sfsvgapi_Domain_Model_Path extends Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	
 	protected $tagName = 'path';
 	

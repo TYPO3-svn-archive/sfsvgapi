@@ -32,7 +32,7 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
+class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	
 	/**
 	 * the name of the tag to create
@@ -81,14 +81,28 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 	
 	
 	/**
-	 * Constructor of this class
+	 * inject css
+	 *
+	 * @param Tx_Sfsvgapi_Domain_Attribute_Css
+	 * @return void
 	 */
-	public function __construct() {
-		$this->css = new Tx_Sfsvgapi_Domain_Attribute_Css;
-		$this->css->setParentObject($this);
-		$this->style = new Tx_Sfsvgapi_Domain_Attribute_Style;
-		$this->style->setParentObject($this);
+	public function injectCss(Tx_Sfsvgapi_Domain_Attribute_Css $css) {
+		$this->css = $css;
 	}
+	
+	/**
+	 * inject style
+	 *
+	 * @param Tx_Sfsvgapi_Domain_Attribute_Style
+	 * @return void
+	 */
+	public function injectStyle(Tx_Sfsvgapi_Domain_Attribute_Style $style) {
+		$this->style = $style;
+	}
+	
+	
+	
+	
 	
 	/**
 	 * @return string
@@ -145,17 +159,13 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 	
 	/**
 	 * setter: define some style attributes which are also available for CSS2
-	 * 
-	 * @return Tx_Sfsvgapi_Domain_Attribute_Css
 	 */
-	public function setCss() {
-		return $this->css;
+	public function setCss(Tx_Sfsvgapi_Domain_Attribute_Css $css) {
+		$this->css = $css;
 	}
 	
 	/**
 	 * getter: define some style attributes which are only valid for SVG
-	 * 
-	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
 	 */
 	public function getStyle() {
 		return $this->style;
@@ -166,8 +176,8 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 	 * 
 	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
 	 */
-	public function setStyle() {
-		return $this->style;
+	public function setStyle(Tx_Sfsvgapi_Domain_Attribute_Style $style) {
+		$this->style = $style;
 	}
 	
 	/**
@@ -182,7 +192,8 @@ class Tx_Sfsvgapi_Domain_Model_AbstractGeo {
 		foreach($this->getStyle()->getAttributes() as $key => $value) {
 			$styleAttributes[] = $key . ': ' . $value;
 		}
-		$this->attributes['style'] = implode('; ', $styleAttributes);
+		$style = implode('; ', $styleAttributes);
+		if(!empty($style)) $this->attributes['style'] = implode('; ', $styleAttributes);
 		return $this->attributes;
 	}	
 }

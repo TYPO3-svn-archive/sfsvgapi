@@ -57,31 +57,47 @@ class Tx_Sfsvgapi_Controller_SvgController extends Tx_Extbase_MVC_Controller_Act
 	 */
 	public function showAction() {
 		// initialize SVG
-		$this->svg->setHeight(300);
-		$this->svg->setWidth(400);
+		$this->svg->setHeight('300');
+		$this->svg->setWidth('400');
 		
-		$circle1 = $this->svg->createCircle()
-			->setCx(100)
-			->setCy(50)
-			->setR(20)
-			->setStyle()
-				->setFill('#FF0000')
-				->setOpacity('0.3')
-				->end()
-			->setCss()
-				->setVisibility('visible')
-				->end();
-		$this->svg->add($circle1);
+		$symbol = $this->svg->createSymbol();
+		$symbol->setId(symb);
+		$symbol->setCss(
+			$this->svg->createCss()
+				->setOverflow('visible')
+		);
 		
-		$text = $this->svg->createText()
-			->setX(10)
-			->setY(40)
-			->setChild('Hello everybody')
-			->setCss()
-				->setFontFamily('Arial')
-				->setFontSize('12')
-				->end();
-		$this->svg->add($text);
+		$symRect1 = $this->svg->createRect()
+			->shortInit('10', '10', '150', '75');
+		$symRect1->setStyle(
+			$this->svg->createStyle()
+				->setFill('red')
+		);
+		
+		$symRect2 = $this->svg->createRect()
+			->shortInit('25', '25', '150', '75');
+		$symRect2->setStyle(
+			$this->svg->createStyle()
+				->setFill('blue')
+		);
+		
+		$symbol->addSymbol($symRect1);
+		$symbol->addSymbol($symRect2);
+		
+		$this->svg->addDef($symbol);
+		
+		// get hidden object and make it visible
+		$use = $this->svg->createUse()
+			->setReference('#symb')
+			->setX('10')
+			->setY('10');
+		$use->setId('test');
+		
+		$group = $this->svg->createGroup();
+		$group->setId('groupUse');
+		$group->addChild($use);
+		
+		$this->svg->add($group);
 		
 		// get svg code and assign it to a fluid var
 		$this->view->assign('svg', $this->svg->getSvg());

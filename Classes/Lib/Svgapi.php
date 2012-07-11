@@ -40,6 +40,11 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	protected $svgContainer;
 	
 	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage
+	 */
+	protected $defContainer;
+	
+	/**
 	 * @var Tx_Extbase_Object_ObjectManagerInterface
 	 */
 	protected $objectManager;
@@ -61,6 +66,16 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	 */
 	public function injectSvgContainer(Tx_Extbase_Persistence_ObjectStorage $svgContainer) {
 		$this->svgContainer = $svgContainer;
+	}
+	
+	/**
+	 * Injects the def container
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $defContainer
+	 * @return void
+	 */
+	public function injectDefContainer(Tx_Extbase_Persistence_ObjectStorage $defContainer) {
+		$this->defContainer = $defContainer;
 	}
 	
 	/**
@@ -90,7 +105,7 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	/**
 	 * set the width of the svg object
 	 * 
-	 * @param integer $width
+	 * @param string $width
 	 */
 	public function setWidth($width) {
 		$this->width = $width;
@@ -100,7 +115,7 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	/**
 	 * set the height of the svg object
 	 * 
-	 * @param integer $height
+	 * @param string $height
 	 */
 	public function setHeight($height) {
 		$this->height = $height;
@@ -187,11 +202,74 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	
 	
 	/**
+	 * Create a g (group) object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Model_Group
+	 */
+	public function createGroup() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Model_Group');
+	}
+	
+	
+	/**
+	 * Create a symbol object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Model_Symbol
+	 */
+	public function createSymbol() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Model_Symbol');
+	}
+	
+	
+	/**
+	 * Create an use object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
+	 */
+	public function createUse() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Model_Use');
+	}
+	
+	
+	/**
+	 * Create a css object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Attribute_Css
+	 */
+	public function createCss() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Attribute_Css');
+	}
+	
+	
+	/**
+	 * Create a style object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
+	 */
+	public function createStyle() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Attribute_Style');
+	}
+	
+	
+	/**
+	 * Add an object to the def definition
+	 * This is useful for objects which should not be visible at startup
+	 * In normal cases you reference them with help of the id attribute
+	 * 
+	 * @return Tx_Sfsvgapi_Lib_Svgapi
+	 */
+	public function addDef(Tx_Sfsvgapi_Domain_Model_AbstractTag $object) {
+		$this->defContainer->attach($object);
+		return $this;
+	}
+	
+	
+	/**
 	 * add the created and modified rect, circle or what ever to the svg container
 	 * 
-	 * @param Tx_Sfsvgapi_Domain_Model_AbstractGeo $object
+	 * @param Tx_Sfsvgapi_Domain_Model_AbstractTag $object
 	 */
-	public function add(Tx_Sfsvgapi_Domain_Model_AbstractGeo $object) {
+	public function add(Tx_Sfsvgapi_Domain_Model_AbstractTag $object) {
 		$this->svgContainer->attach($object);
 	}
 
@@ -202,12 +280,20 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	 * @return string
 	 */
 	public function getSvg() {
+		$html = array();
+		if($this->defContainer->count()) {
+			$html[] = '<defs>';
+			foreach($this->defContainer as $object) {
+				$html[] = $this->tagGenerator->generateTag($object);
+			}
+			$html[] = '</defs>';
+		}
 		if($this->svgContainer->count()) {
 			foreach($this->svgContainer as $object) {
 				$html[] = $this->tagGenerator->generateTag($object);
 			}
 			return '
-				<svg xmlns="http://www.w3.org/2000/svg" width="' . $this->width . '" height="' . $this->height . '" version="1.1">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="' . $this->width . '" height="' . $this->height . '" version="1.1">
 				' . implode(CHR(10), $html) . '
 				</svg>
 			';

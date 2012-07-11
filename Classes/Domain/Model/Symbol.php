@@ -32,39 +32,52 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_Sfsvgapi_Domain_Model_Polygon extends Tx_Sfsvgapi_Domain_Model_AbstractTag {
+class Tx_Sfsvgapi_Domain_Model_Symbol extends Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	
-	protected $tagName = 'polygon';
-	
-	/**
-	 * array containing all points of the polygon
-	 * 
-	 * @var array
-	 */
-	protected $points;
-	
-	
-	
-	
+	protected $tagName = 'symbol';
 	
 	/**
-	 * getter for: array containing all points of the polygon
+	 * child nodes
 	 * 
-	 * @return integer
+	 * @var Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function getPoints() {
-		return $this->points;
+	protected $childContainer;
+	
+	
+	
+	
+	
+	/**
+	 * Injects the childContainer
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $childContainer
+	 * @return void
+	 */
+	public function injectChildContainer(Tx_Extbase_Persistence_ObjectStorage $childContainer) {
+		$this->childContainer = $childContainer;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * getter for: symbolContainer
+	 * 
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getChildContainer() {
+		return $this->childContainer;
 	}
 	
 	/**
-	 * setter for: array containing all points of the polygon
+	 * add new (rect, circle, ...) objects to this symbol
 	 * 
-	 * @param integer $points
-	 * @return Tx_Sfsvgapi_Domain_Model_Polygon
+	 * @param Tx_Sfsvgapi_Domain_Model_AbstractTag $object
+	 * @return Tx_Sfsvgapi_Domain_Model_Symbol
 	 */
-	public function setPoints($points) {
-		$this->attributes['points'] = $points;
-		$this->points = $points;
+	public function addSymbol(Tx_Sfsvgapi_Domain_Model_AbstractTag $object) {
+		$this->childContainer->attach($object);
 		return $this;
 	}
 }

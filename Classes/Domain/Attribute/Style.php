@@ -331,7 +331,7 @@ class Tx_Sfsvgapi_Domain_Attribute_Style {
 	/**
 	 * parentObject
 	 * 
-	 * @var Tx_Sfsvgapi_Domain_Model_AbstractGeo
+	 * @var Tx_Sfsvgapi_Domain_Model_Tag
 	 */
 	protected $parentObject;
 	
@@ -1241,16 +1241,16 @@ class Tx_Sfsvgapi_Domain_Attribute_Style {
 	 * setter for parentObject
 	 * this is useful to quit editing this object
 	 * 
-	 * @param $parentObject
+	 * @param Tx_Sfsvgapi_Domain_Model_Tag $parentObject
 	 */
-	public function setParentObject(Tx_Sfsvgapi_Domain_Model_AbstractGeo $parentObject) {
+	public function setParentObject(Tx_Sfsvgapi_Domain_Model_Tag $parentObject) {
 		$this->parentObject = $parentObject;
 	}
 	
 	/**
 	 * As in jQuery this method exits editing of this object and return the parent one
 	 * 
-	 * @return Tx_Sfsvgapi_Domain_Model_AbstractGeo
+	 * @return Tx_Sfsvgapi_Domain_Model_Tag
 	 */
 	public function end() {
 		return $this->parentObject;

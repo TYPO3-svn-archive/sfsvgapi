@@ -32,75 +32,51 @@
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  *
  */
-class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag {
+class Tx_Sfsvgapi_Domain_Model_Use extends Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	
-	protected $tagName = 'rect';
+	protected $tagName = 'use';
 	
 	/**
-	 * horizontal position of the upper left corner
+	 * horizontal position of the referenced object
 	 * 
 	 * @var string
 	 */
 	protected $x;
 	
 	/**
-	 * vertical position of the upper left corner
+	 * vertical position of the referenced object
 	 * 
 	 * @var string
 	 */
 	protected $y;
-
+	
 	/**
-	 * width of the rect
+	 * width
 	 * 
 	 * @var string
 	 */
 	protected $width;
-
+	
 	/**
-	 * height of the rect
+	 * height
 	 * 
 	 * @var string
 	 */
 	protected $height;
-
+	
 	/**
-	 * horiconal width for rounded corners
+	 * reference link
 	 * 
 	 * @var string
 	 */
-	protected $rx;
-
-	/**
-	 * vertical height for rounded corners
-	 * 
-	 * @var string
-	 */
-	protected $ry;
+	protected $reference;
 	
 	
 	
 	
 	
 	/**
-	 * This is a shorter possibility to configure the rect with ONE Method
-	 * 
-	 * @param string $x
-	 * @param string $y
-	 * @param string $width
-	 * @param string $height
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
-	 */
-	public function shortInit($x, $y, $width, $height) {
-		$this->setX($x);
-		$this->setY($y);
-		$this->setWidth($width);
-		$this->setHeight($height);
-		return $this;
-	}
-	
-	/**
-	 * getter for: horizontal position of the upper left corner
+	 * getter for: horizontal position of the referenced object
 	 * 
 	 * @return string
 	 */
@@ -109,10 +85,10 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 	
 	/**
-	 * setter for: horizontal position of the upper left corner
+	 * setter for: horizontal position of the referenced object
 	 * 
 	 * @param string $x
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
 	 */
 	public function setX($x) {
 		$this->attributes['x'] = $x;
@@ -121,7 +97,7 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 
 	/**
-	 * getter for: vertical position of the upper left corner
+	 * getter for: vertical position of the referenced object
 	 * 
 	 * @return string
 	 */
@@ -130,19 +106,19 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 	
 	/**
-	 * setter for: vertical position of the upper left corner
+	 * setter for: vertical position of the referenced object
 	 * 
 	 * @param string $y
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
 	 */
 	public function setY($y) {
 		$this->attributes['y'] = $y;
 		$this->y = $y;
 		return $this;
 	}
-
+	
 	/**
-	 * getter for: width of the rect
+	 * getter for: width
 	 * 
 	 * @return string
 	 */
@@ -151,10 +127,10 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 	
 	/**
-	 * setter for: width of the rect
+	 * setter for: width
 	 * 
 	 * @param string $width
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
 	 */
 	public function setWidth($width) {
 		$this->attributes['width'] = $width;
@@ -163,7 +139,7 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 
 	/**
-	 * getter for: height of the rect
+	 * getter for: height
 	 * 
 	 * @return string
 	 */
@@ -172,56 +148,36 @@ class Tx_Sfsvgapi_Domain_Model_Rect extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	}
 	
 	/**
-	 * setter for: height of the rect
+	 * setter for: height
 	 * 
 	 * @param string $height
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
 	 */
 	public function setHeight($height) {
 		$this->attributes['height'] = $height;
 		$this->height = $height;
 		return $this;
 	}
-
+	
 	/**
-	 * getter for: horiconal width for rounded corners
+	 * getter for: reference link
 	 * 
 	 * @return string
 	 */
-	public function getRx() {
-		return $this->rx;
+	public function getReference() {
+		return $this->reference;
 	}
 	
 	/**
-	 * setter for: horiconal width for rounded corners
+	 * setter for: reference link
+	 * give it an id (#MyBlueRect) of an object you have inserted within the defs section ($this->svg->addDef()) for example
 	 * 
-	 * @param string $rx
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
+	 * @param string $reference
+	 * @return Tx_Sfsvgapi_Domain_Model_Use
 	 */
-	public function setRx($rx) {
-		$this->attributes['rx'] = $rx;
-		$this->rx = $rx;
-		return $this;
-	}
-
-	/**
-	 * getter for: vertical position of the upper left corner
-	 * 
-	 * @return string
-	 */
-	public function getRy() {
-		return $this->ry;
-	}
-	
-	/**
-	 * setter for: vertical position of the upper left corner
-	 * 
-	 * @param string $ry
-	 * @return Tx_Sfsvgapi_Domain_Model_Rect
-	 */
-	public function setRy($ry) {
-		$this->attributes['ry'] = $ry;
-		$this->ry = $ry;
+	public function setReference($reference) {
+		$this->attributes['xlink:href'] = $reference;
+		$this->reference = $reference;
 		return $this;
 	}
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd" [
+  <!ENTITY stKanton "stroke:#3984FF;stroke-width:150;fill-rule:nonzero;fill:#C5FFE8;">
+]>
 <!-- Generator: LimeLight SVG 1.0x01 (Martin Heller) -->
 <!-- edited by Andreas Neumann -->
 <!-- Data Source: Swiss Federal Office of Statistics -->

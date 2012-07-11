@@ -54,23 +54,36 @@ class Tx_Sfsvgapi_Lib_TagGenerator {
 	/**
 	 * generate the HTML Tag with help of the infomations in the given object
 	 * 
-	 * @param Tx_Sfsvgapi_Domain_Model_AbstractGeo
+	 * @param Tx_Sfsvgapi_Domain_Model_Tag
 	 * @return string HTML-Tag
 	 */
-	public function generateTag(Tx_Sfsvgapi_Domain_Model_AbstractGeo $object) {
+	public function generateTag(Tx_Sfsvgapi_Domain_Model_AbstractTag $object) {
+		$attributes = array();
 		if(!is_string($object->getTagName()) || $object->getTagName() == '') return '';
 		
 		foreach($object->getAttributes() as $key => $value) {
 			$attributes[] = $key . '="' . $value . '"';
 		}
 		
-		if(method_exists($object, 'getChild')) {
+		if(method_exists($object, 'getChildContainer')) {
 			// builds: <tag attribute="value">My own Text</tag>
 			$startTag = '<|>';
 			$endTag = '</|>';
+			$childs = $object->getChildContainer();
+			
+			// in case of a text object it's a string
+			if(is_string($childs)) {
+				$content = $object->getChildContainer();
+			} else {
+				// process all child elements
+				foreach($childs as $child) {
+					$content[] = $this->generateTag($child);
+				}
+				$content = implode(CHR(10), $content);
+			}
 			$startTag = $this->contentObject->wrap($object->getTagName() . ' ' . implode(' ', $attributes), $startTag);
 			$endTag = $this->contentObject->wrap($object->getTagName(), $endTag);
-			$tag = $startTag . $object->getChild() . $endTag;
+			$tag = $startTag . $content . $endTag;
 		} else {
 			// builds: <tag attribute="value" />
 			$emptyTag = '<|/>';
