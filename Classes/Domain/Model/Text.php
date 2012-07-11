@@ -125,7 +125,7 @@ class Tx_Sfsvgapi_Domain_Model_Text extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	 * 
 	 * @return string
 	 */
-	public function getChild() {
+	public function getChildContainer() {
 		return $this->child;
 	}
 	
