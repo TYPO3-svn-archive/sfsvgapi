@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'SF SVG API',
-	'description' => 'With help of this extension you get a SVG API for your extensions',
+	'description' => 'This is a SVG API. Create Rect, Text, Ellipse, circle and some more. You also can create groups, symbol and use objects. Render SVG by inline, object, iframe or embed.',
 	'category' => 'plugin',
 	'author' => 'Stefan Froemken',
 	'author_email' => 'firma@sfroemken.de',
