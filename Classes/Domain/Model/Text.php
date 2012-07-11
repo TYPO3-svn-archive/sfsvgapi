@@ -81,7 +81,7 @@ class Tx_Sfsvgapi_Domain_Model_Text extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * getter for: horizontal position of the upper left corner
 	 * 
-	 * @return integer
+	 * @return 
 	 */
 	public function getX() {
 		return $this->x;
@@ -90,7 +90,7 @@ class Tx_Sfsvgapi_Domain_Model_Text extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: horizontal position of the upper left corner
 	 * 
-	 * @param integer $x
+	 * @param  $x
 	 * @return Tx_Sfsvgapi_Domain_Model_Text
 	 */
 	public function setX($x) {
@@ -102,7 +102,7 @@ class Tx_Sfsvgapi_Domain_Model_Text extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * getter for: vertical position of the upper left corner
 	 * 
-	 * @return integer
+	 * @return 
 	 */
 	public function getY() {
 		return $this->y;
@@ -111,7 +111,7 @@ class Tx_Sfsvgapi_Domain_Model_Text extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: vertical position of the upper left corner
 	 * 
-	 * @param integer $y
+	 * @param  $y
 	 * @return Tx_Sfsvgapi_Domain_Model_Text
 	 */
 	public function setY($y) {

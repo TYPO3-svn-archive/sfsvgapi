@@ -39,28 +39,28 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * horizontal position of the middle of the ellipse
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $cx;
 	
 	/**
 	 * vertical position of the middle of the ellipse
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $cy;
 
 	/**
 	 * width of the ellipse
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $rx;
 
 	/**
 	 * height of the ellipse
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $ry;	
 	
@@ -71,7 +71,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * getter for: horizontal position of the middle of the ellipse
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getCx() {
 		return $this->cx;
@@ -80,7 +80,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * setter for: horizontal position of the middle of the ellipse
 	 * 
-	 * @param integer $cx
+	 * @param string $cx
 	 * @return Tx_Sfsvgapi_Domain_Model_Ellipse
 	 */
 	public function setCx($cx) {
@@ -92,7 +92,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * getter for: vertical position of the middle of the ellipse
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getCy() {
 		return $this->cy;
@@ -101,7 +101,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * setter for: vertical position of the middle of the ellipse
 	 * 
-	 * @param integer $cy
+	 * @param string $cy
 	 * @return Tx_Sfsvgapi_Domain_Model_Ellipse
 	 */
 	public function setCy($cy) {
@@ -113,7 +113,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * getter for: width of the ellipse
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getRx() {
 		return $this->rx;
@@ -122,7 +122,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * setter for: width of the ellipse
 	 * 
-	 * @param integer $rx
+	 * @param string $rx
 	 * @return Tx_Sfsvgapi_Domain_Model_Ellipse
 	 */
 	public function setRx($rx) {
@@ -134,7 +134,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * getter for: height of the ellipse
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getRy() {
 		return $this->ry;
@@ -143,7 +143,7 @@ class Tx_Sfsvgapi_Domain_Model_Ellipse extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * setter for: height of the ellipse
 	 * 
-	 * @param integer $ry
+	 * @param string $ry
 	 * @return Tx_Sfsvgapi_Domain_Model_Ellipse
 	 */
 	public function setRy($ry) {

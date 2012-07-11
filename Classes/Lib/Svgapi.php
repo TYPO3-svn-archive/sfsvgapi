@@ -232,26 +232,6 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	
 	
 	/**
-	 * Create a css object
-	 * 
-	 * @return Tx_Sfsvgapi_Domain_Attribute_Css
-	 */
-	public function createCss() {
-		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Attribute_Css');
-	}
-	
-	
-	/**
-	 * Create a style object
-	 * 
-	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
-	 */
-	public function createStyle() {
-		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Attribute_Style');
-	}
-	
-	
-	/**
 	 * Add an object to the def definition
 	 * This is useful for objects which should not be visible at startup
 	 * In normal cases you reference them with help of the id attribute

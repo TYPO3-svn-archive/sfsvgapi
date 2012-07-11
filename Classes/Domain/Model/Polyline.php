@@ -50,7 +50,7 @@ class Tx_Sfsvgapi_Domain_Model_Polyline extends Tx_Sfsvgapi_Domain_Model_Abstrac
 	/**
 	 * getter for: array containing all points of the polyline
 	 * 
-	 * @return integer
+	 * @return array
 	 */
 	public function getPoints() {
 		return $this->points;
@@ -59,7 +59,7 @@ class Tx_Sfsvgapi_Domain_Model_Polyline extends Tx_Sfsvgapi_Domain_Model_Abstrac
 	/**
 	 * setter for: array containing all points of the polyline
 	 * 
-	 * @param integer $points
+	 * @param array $points
 	 * @return Tx_Sfsvgapi_Domain_Model_Polyline
 	 */
 	public function setPoints($points) {

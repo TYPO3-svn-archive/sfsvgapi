@@ -39,21 +39,21 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * horizontal position of the middle of the circle
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $cx;
 	
 	/**
 	 * vertical position of the middle of the circle
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $cy;
 
 	/**
 	 * radius of the circle
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $r;
 
@@ -64,7 +64,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * getter for: horizontal position of the middle of the circle
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getCx() {
 		return $this->cx;
@@ -73,7 +73,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * setter for: horizontal position of the middle of the circle
 	 * 
-	 * @param integer $cx
+	 * @param string $cx
 	 * @return Tx_Sfsvgapi_Domain_Model_Circle
 	 */
 	public function setCx($cx) {
@@ -85,7 +85,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * getter for: vertical position of the middle of the circle
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getCy() {
 		return $this->cy;
@@ -94,7 +94,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * setter for: vertical position of the middle of the circle
 	 * 
-	 * @param integer $cy
+	 * @param string $cy
 	 * @return Tx_Sfsvgapi_Domain_Model_Circle
 	 */
 	public function setCy($cy) {
@@ -106,7 +106,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * getter for: radius of the circle
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getR() {
 		return $this->r;
@@ -115,7 +115,7 @@ class Tx_Sfsvgapi_Domain_Model_Circle extends Tx_Sfsvgapi_Domain_Model_AbstractT
 	/**
 	 * setter for: radius of the circle
 	 * 
-	 * @param integer $r
+	 * @param string $r
 	 * @return Tx_Sfsvgapi_Domain_Model_Circle
 	 */
 	public function setR($r) {

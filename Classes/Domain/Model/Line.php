@@ -39,28 +39,28 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * horizontal position of the starting point
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $x1;
 	
 	/**
 	 * vertical position of the starting point
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $y1;
 
 	/**
 	 * horizontal position of the ending point
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $x2;
 
 	/**
 	 * vertical position of the ending point
 	 * 
-	 * @var integer
+	 * @var string
 	 */
 	protected $y2;
 
@@ -71,7 +71,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * getter for: horizontal position of the starting point
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getX1() {
 		return $this->x1;
@@ -80,7 +80,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: horizontal position of the starting point
 	 * 
-	 * @param integer $x1
+	 * @param string $x1
 	 * @return Tx_Sfsvgapi_Domain_Model_Line
 	 */
 	public function setX1($x1) {
@@ -92,7 +92,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * getter for: vertical position of the starting point
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getY1() {
 		return $this->y1;
@@ -101,7 +101,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: vertical position of the starting point
 	 * 
-	 * @param integer $y1
+	 * @param string $y1
 	 * @return Tx_Sfsvgapi_Domain_Model_Line
 	 */
 	public function setY1($y1) {
@@ -113,7 +113,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 		/**
 	 * getter for: horizontal position of the ending point
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getX2() {
 		return $this->x2;
@@ -122,7 +122,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: horizontal position of the ending point
 	 * 
-	 * @param integer $x2
+	 * @param string $x2
 	 * @return Tx_Sfsvgapi_Domain_Model_Line
 	 */
 	public function setX2($x2) {
@@ -134,7 +134,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * getter for: vertical position of the ending point
 	 * 
-	 * @return integer
+	 * @return string
 	 */
 	public function getY2() {
 		return $this->y2;
@@ -143,7 +143,7 @@ class Tx_Sfsvgapi_Domain_Model_Line extends Tx_Sfsvgapi_Domain_Model_AbstractTag
 	/**
 	 * setter for: vertical position of the ending point
 	 * 
-	 * @param integer $y2
+	 * @param string $y2
 	 * @return Tx_Sfsvgapi_Domain_Model_Line
 	 */
 	public function setY2($y2) {

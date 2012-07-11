@@ -50,7 +50,7 @@ class Tx_Sfsvgapi_Domain_Model_Polygon extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * getter for: array containing all points of the polygon
 	 * 
-	 * @return integer
+	 * @return array
 	 */
 	public function getPoints() {
 		return $this->points;
@@ -59,10 +59,10 @@ class Tx_Sfsvgapi_Domain_Model_Polygon extends Tx_Sfsvgapi_Domain_Model_Abstract
 	/**
 	 * setter for: array containing all points of the polygon
 	 * 
-	 * @param integer $points
+	 * @param array $points
 	 * @return Tx_Sfsvgapi_Domain_Model_Polygon
 	 */
-	public function setPoints($points) {
+	public function setPoints(array $points) {
 		$this->attributes['points'] = $points;
 		$this->points = $points;
 		return $this;
