@@ -60,29 +60,26 @@ class Tx_Sfsvgapi_Controller_SvgController extends Tx_Extbase_MVC_Controller_Act
 		$this->svg->setHeight('300');
 		$this->svg->setWidth('400');
 		
-		$symbol = $this->svg->createSymbol();
-		$symbol->setId(symb);
-		$symbol->setCss(
-			$this->svg->createCss()
+		$symbol = $this->svg->createSymbol()
+			->addSymbol(
+				$this->svg->createRect()
+					->shortInit('25', '25', '150', '75')
+					->setStyle()
+						->setFill('blue')
+						->end()
+			)
+			->setId('symb')
+			->setCss()
 				->setOverflow('visible')
-		);
-		
-		$symRect1 = $this->svg->createRect()
-			->shortInit('10', '10', '150', '75');
-		$symRect1->setStyle(
-			$this->svg->createStyle()
-				->setFill('red')
-		);
-		
-		$symRect2 = $this->svg->createRect()
-			->shortInit('25', '25', '150', '75');
-		$symRect2->setStyle(
-			$this->svg->createStyle()
-				->setFill('blue')
-		);
-		
-		$symbol->addSymbol($symRect1);
-		$symbol->addSymbol($symRect2);
+				->end()
+			->addSymbol(
+				$this->svg->createRect()
+					->shortInit('10', '10', '150', '75')
+					->setStyle()
+						->setFill('red')
+						->end()
+			)
+		;
 		
 		$this->svg->addDef($symbol);
 		
@@ -93,9 +90,9 @@ class Tx_Sfsvgapi_Controller_SvgController extends Tx_Extbase_MVC_Controller_Act
 			->setY('10');
 		$use->setId('test');
 		
-		$group = $this->svg->createGroup();
-		$group->setId('groupUse');
-		$group->addChild($use);
+		$group = $this->svg->createGroup()
+			->setId('groupUse')
+			->addChild($use);
 		
 		$this->svg->add($group);
 		

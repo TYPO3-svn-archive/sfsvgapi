@@ -277,27 +277,100 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	/**
 	 * get svg source code as HTML
 	 * 
-	 * @return string
+	 * @param string return svg as inline, object, embed or iframe. object is default
+	 * @return string HTML with the rendered SVG Image
 	 */
-	public function getSvg() {
-		$html = array();
+	public function getSvg($returnAs = 'object') {
+		$svg = array();
 		if($this->defContainer->count()) {
-			$html[] = '<defs>';
+			$svg[] = '<defs>';
 			foreach($this->defContainer as $object) {
-				$html[] = $this->tagGenerator->generateTag($object);
+				$svg[] = $this->tagGenerator->generateTag($object);
 			}
-			$html[] = '</defs>';
+			$svg[] = '</defs>';
 		}
 		if($this->svgContainer->count()) {
 			foreach($this->svgContainer as $object) {
-				$html[] = $this->tagGenerator->generateTag($object);
+				$svg[] = $this->tagGenerator->generateTag($object);
 			}
+			$svg = implode(CHR(10), $svg);
+			switch($returnAs) {
+				case 'inline':
+					$html = $this->getSvgAsInline($svg);
+					break;
+				case 'embed':
+					$html = $this->getSvgAsEmbed($svg);
+					break;
+				case 'iframe':
+					$html = $this->getSvgAsIframe($svg);
+					break;
+				case 'object':
+				default:
+					$html = $this->getSvgAsObject($svg);
+					break;
+			}
+			return $html;
+		} else return '';
+	}
+	
+	
+	protected function getSvgAsInline($svg) {
+		if(is_string($svg) && !empty($svg)) {
 			return '
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="' . $this->width . '" height="' . $this->height . '" version="1.1">
-				' . implode(CHR(10), $html) . '
+				' . implode(CHR(10), $svg) . '
 				</svg>
 			';
-		} else return '';
+		}
+	}
+	
+	protected function getSvgAsObject($svg) {
+		if(is_string($svg) && !empty($svg)) {
+			$svg = '<?xml version="1.0"?>
+				<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="' . $this->width . '" height="' . $this->height . '">
+					' . $svg . '
+				</svg>
+			';
+		}
+		return '<object data="' . $this->createRelativeFilePath($svg) . '" type="image/svg+xml"></object>';
+	}
+	
+	protected function getSvgAsEmbed($svg) {
+		if(is_string($svg) && !empty($svg)) {
+			$svg = '<?xml version="1.0"?>
+				<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="' . $this->width . '" height="' . $this->height . '">
+					' . $svg . '
+				</svg>
+			';
+		}
+		return '<embed src="' . $this->createRelativeFilePath($svg) . '" type="image/svg+xml" />';
+	}
+	
+	protected function getSvgAsIframe($svg) {
+		if(is_string($svg) && !empty($svg)) {
+			$svg = '<?xml version="1.0"?>
+				<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="' . $this->width . '" height="' . $this->height . '">
+					' . $svg . '
+				</svg>
+			';
+		}
+		return '<iframe src="' . $this->createRelativeFilePath($svg) . '"></iframe>';
+	}
+	
+	protected function createRelativeFilePath($svg) {
+		// create a unique filename
+		$fileName = md5($svg);
+		$path = PATH_site . 'typo3temp/sfsvgapi/' . $fileName . '.svg';
+		// write file to typo3temp
+		t3lib_div::writeFileToTypo3tempDir($path, $svg);
+		// make relative filepath
+		if(TYPO3_MODE === 'BE') {
+			$backPath = '../';
+		} else $backPath = '';
+		return $backPath . str_replace(PATH_site, '', $path);
 	}
 }
 ?>

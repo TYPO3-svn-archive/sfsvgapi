@@ -124,10 +124,12 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	 * setter for ID attribute
 	 * 
 	 * @param string $id
+	 * @return Tx_Sfsvgapi_Domain_Model_AbstractTag
 	 */
 	public function setId($id) {
 		$this->attributes['id'] = $id;
 		$this->id = $id;
+		return $this;
 	}
 	
 	/**
@@ -143,9 +145,12 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	 * setter for class
 	 *
 	 * @param string $class
+	 * @return Tx_Sfsvgapi_Domain_Model_AbstractTag
 	 */
 	public function setClass($class) {
+		$this->attributes['class'] = $class;
 		$this->class = $class;
+		return $this;
 	}
 	
 	/**
@@ -159,13 +164,18 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	
 	/**
 	 * setter: define some style attributes which are also available for CSS2
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Attribute_Css
 	 */
-	public function setCss(Tx_Sfsvgapi_Domain_Attribute_Css $css) {
-		$this->css = $css;
+	public function setCss() {
+		$this->css->setParentObject($this);
+		return $this->css;
 	}
 	
 	/**
 	 * getter: define some style attributes which are only valid for SVG
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
 	 */
 	public function getStyle() {
 		return $this->style;
@@ -176,8 +186,9 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	 * 
 	 * @return Tx_Sfsvgapi_Domain_Attribute_Style
 	 */
-	public function setStyle(Tx_Sfsvgapi_Domain_Attribute_Style $style) {
-		$this->style = $style;
+	public function setStyle() {
+		$this->style->setParentObject($this);
+		return $this->style;
 	}
 	
 	/**
