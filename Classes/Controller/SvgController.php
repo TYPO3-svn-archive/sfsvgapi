@@ -60,21 +60,34 @@ class Tx_Sfsvgapi_Controller_SvgController extends Tx_Extbase_MVC_Controller_Act
 		$this->svg->setHeight('300');
 		$this->svg->setWidth('400');
 		
-		$text = $this->svg->createText()
-			->setChild('Hello TYPO3-Community')
-			->setX('10')
-			->setY('30')
+		$rect = $this->svg->createRect()
+			->shortInit('10', '10', '0', '30')
+			->addChild(
+				$this->svg->createAnimate()
+					->setBegin('0s')
+					->setDur('2s')
+					->setAttributeName('width')
+					->setAttributeType('XML')
+					->setValues('0; 300; 280; 300')
+					->setKeySplines('.5 0 .5 1; .5 0 .5 1; .5 0 .5 1')
+					->setKeyTimes('0; 0.6; 0.8; 1')
+					->setCalcMode('spline')
+					->setFill('freeze')
+			)
+			->addChild(
+				$this->svg->createAnimate()
+					->setBegin('0s')
+					->setDur('2s')
+					->setAttributeName('fill')
+					->setAttributeType('CSS')
+					->setFrom('red')
+					->setTo('blue')
+					->setFill('freeze')
+			)
 			->setStyle()
-				->setFill('none')
-				->setStroke('black')
-				->setStrokeWidth('1')
-				->end()
-			->setCss()
-				->setFontFamily('Arial')
-				->setFontSize('24px')
-				->setFontWeight('bold')
+				->setFill('red')
 				->end();
-		$this->svg->add($text);
+		$this->svg->add($rect);
 		
 		// get svg code and assign it to a fluid var
 		$this->view->assign('svg', $this->svg->getSvg());

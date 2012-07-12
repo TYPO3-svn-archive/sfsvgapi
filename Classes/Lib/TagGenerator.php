@@ -65,22 +65,30 @@ class Tx_Sfsvgapi_Lib_TagGenerator {
 			$attributes[] = $key . '="' . $value . '"';
 		}
 		
-		if(method_exists($object, 'getChildContainer')) {
-			// builds: <tag attribute="value">My own Text</tag>
+		$childs = $object->getChildContainer();
+		
+		// in case of a text object it's a string
+		if(is_string($childs) && !empty($childs)) {
+			// builds: <text attribute="value">My own Text</text>
 			$startTag = '<|>';
 			$endTag = '</|>';
-			$childs = $object->getChildContainer();
 			
-			// in case of a text object it's a string
-			if(is_string($childs)) {
-				$content = $object->getChildContainer();
-			} else {
-				// process all child elements
-				foreach($childs as $child) {
-					$content[] = $this->generateTag($child);
-				}
-				$content = implode(CHR(10), $content);
+			$content = $object->getChildContainer();
+
+			$startTag = $this->contentObject->wrap($object->getTagName() . ' ' . implode(' ', $attributes), $startTag);
+			$endTag = $this->contentObject->wrap($object->getTagName(), $endTag);
+			$tag = $startTag . $content . $endTag;
+		} elseif($childs instanceof Tx_Extbase_Persistence_ObjectStorage) {
+			// builds: <tag attribute="value"><circle cy="20" cx="20" r="30" /></tag>
+			$startTag = '<|>';
+			$endTag = '</|>';
+			
+			// process all child elements
+			foreach($childs as $child) {
+				$content[] = $this->generateTag($child);
 			}
+			$content = implode(CHR(10), $content);
+			
 			$startTag = $this->contentObject->wrap($object->getTagName() . ' ' . implode(' ', $attributes), $startTag);
 			$endTag = $this->contentObject->wrap($object->getTagName(), $endTag);
 			$tag = $startTag . $content . $endTag;

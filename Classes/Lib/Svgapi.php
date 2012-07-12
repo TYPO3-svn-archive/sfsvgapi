@@ -232,6 +232,16 @@ class Tx_Sfsvgapi_Lib_Svgapi {
 	
 	
 	/**
+	 * Create an animate object
+	 * 
+	 * @return Tx_Sfsvgapi_Domain_Model_Animate
+	 */
+	public function createAnimate() {
+		return $this->objectManager->get('Tx_Sfsvgapi_Domain_Model_Animate');
+	}
+	
+	
+	/**
 	 * Add an object to the def definition
 	 * This is useful for objects which should not be visible at startup
 	 * In normal cases you reference them with help of the id attribute

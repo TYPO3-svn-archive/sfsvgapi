@@ -76,6 +76,13 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	 */
 	protected $attributes;
 	
+	/**
+	 * child nodes
+	 * 
+	 * @var Tx_Extbase_Persistence_ObjectStorage
+	 */
+	protected $childContainer;
+	
 	
 	
 	
@@ -98,6 +105,16 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 	 */
 	public function injectStyle(Tx_Sfsvgapi_Domain_Attribute_Style $style) {
 		$this->style = $style;
+	}
+	
+	/**
+	 * Injects the childContainer
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $childContainer
+	 * @return void
+	 */
+	public function injectChildContainer(Tx_Extbase_Persistence_ObjectStorage $childContainer) {
+		$this->childContainer = $childContainer;
 	}
 	
 	
@@ -207,5 +224,26 @@ class Tx_Sfsvgapi_Domain_Model_AbstractTag {
 		if(!empty($style)) $this->attributes['style'] = implode('; ', $styleAttributes);
 		return $this->attributes;
 	}	
+	
+	/**
+	 * getter for: childContainer
+	 * 
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getChildContainer() {
+		return $this->childContainer;
+	}
+	
+	/**
+	 * add new (rect, circle, ...) objects to this group
+	 * grouping is useful to set a color for all contained objects
+	 * 
+	 * @param Tx_Sfsvgapi_Domain_Model_AbstractTag $object
+	 * @return Tx_Sfsvgapi_Domain_Model_Group
+	 */
+	public function addChild(Tx_Sfsvgapi_Domain_Model_AbstractTag $object) {
+		$this->childContainer->attach($object);
+		return $this;
+	}
 }
 ?>
